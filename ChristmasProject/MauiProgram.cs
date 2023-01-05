@@ -1,4 +1,10 @@
-﻿namespace ChristmasProject;
+﻿
+using ChristmasProject.Applicazione.Code.Models;
+using ChristmasProject.Applicazione.Code.ViewModel;
+using ChristmasProject.Applicazione.Design;
+using Microsoft.Maui.Handlers;
+
+namespace ChristmasProject;
 
 public static class MauiProgram
 {
@@ -11,8 +17,16 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+				fonts.AddFont("Whitney-Bold.ttf", "WhitneyBold");
+			})
+            .ConfigureMauiHandlers(h =>
+            {
+				h.AddHandler<CardPicture, ImageButtonHandler>();
 			});
 
-		return builder.Build();
+		builder.Services.AddSingleton<CardViewModel>();
+		builder.Services.AddSingleton<GamePage>();
+
+        return builder.Build();
 	}
 }

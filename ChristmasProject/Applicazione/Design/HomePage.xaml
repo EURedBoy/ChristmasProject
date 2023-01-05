@@ -1,24 +1,100 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<local:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ChristmasProject.Applicazione.Design"
              x:Class="ChristmasProject.Applicazione.Design.HomePage"
-             Title="HomePage">
+             x:TypeArguments="ContentPage"
+                
+             BackgroundImageSource="sfondo.png">
 
     <VerticalStackLayout>
 
-        <HorizontalStackLayout
-            BackgroundColor="#E69B00"
-            HeightRequest="50">
+        <Button
+            Text="New Game"
+            TextColor="White"
+            FontFamily="WhitneyBold"
+            FontSize="37"
+            
+            BackgroundColor="#FF8A00"
+            
+            Margin="0, 200, 0, 0"
+            
+            WidthRequest="221"
+            HeightRequest="65"
+            
+            CornerRadius="17"
+            
+            x:Name="new_game_button"
+            Clicked="start_button">
 
-            <Image
-                Source="logo.png"
-                WidthRequest="40"
-                HeightRequest="40"
-                VerticalOptions="Center"
-                Margin="50, 5, 0, 5"/>
+            
+            
+            <Button.Shadow>
+                <Shadow
+                    Brush="#D66B00"
+                    Offset="-7, 17"
+                    Radius="1"
+                    Opacity="1" />
+            </Button.Shadow>
+        </Button>
+
+        <Button
+            Text="Shop"
+            TextColor="White"
+            FontFamily="WhitneyBold"
+            FontSize="37"
+            
+            BackgroundColor="#FF8A00"
+            
+            Margin="0, 30, 0, 0"
+            
+            WidthRequest="221"
+            HeightRequest="65"
+            
+            CornerRadius="17"
+            
+            x:Name="shop"
+            Clicked="shop_button">
 
 
-        </HorizontalStackLayout>
+
+            <Button.Shadow>
+                <Shadow
+                    Brush="#D66B00"
+                    Offset="-7, 17"
+                    Radius="1"
+                    Opacity="1" />
+            </Button.Shadow>
+        </Button>
+
+        <Button
+            Text="Settings"
+            TextColor="White"
+            FontFamily="WhitneyBold"
+            FontSize="37"
+            
+            BackgroundColor="#FF8A00"
+            
+            Margin="0, 30, 0, 0"
+            
+            WidthRequest="221"
+            HeightRequest="65"
+            
+            CornerRadius="17"
+            
+            x:Name="settings"
+            Clicked="settings_button">
+
+
+
+            <Button.Shadow>
+                <Shadow
+                    Brush="#D66B00"
+                    Offset="-7, 17"
+                    Radius="1"
+                    Opacity="1" />
+            </Button.Shadow>
+        </Button>
 
     </VerticalStackLayout>
-</ContentPage>
+</local:BasePage>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChristmasProject.Applicazione.Design.GamePage"
+             xmlns:viewModels="clr-namespace:ChristmasProject.Applicazione.Code.ViewModel"
+             xmlns:models="clr-namespace:ChristmasProject.Applicazione.Code.Models"
+             x:DataType="viewModels:CardViewModel"
+             xmlns:local="clr-namespace:ChristmasProject.Applicazione.Design"
+             x:TypeArguments="ContentPage"
+                
+                BackgroundImageSource="sfondo.png">
+
+    <VerticalStackLayout Margin="0, 100, 0, 0">
+
+        <VerticalStackLayout VerticalOptions="CenterAndExpand">
+            <CollectionView ItemsSource="{Binding Cards}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Span="3" Orientation="Vertical" VerticalItemSpacing="20"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:MemoryCard">
+                        <Frame BackgroundColor="White" Padding="0" CornerRadius="20" HeightRequest="50" WidthRequest="50">
+                            <Label Text="{Binding Id}" FontSize="28" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+
+    </VerticalStackLayout>
+
+
+</local:BasePage>
