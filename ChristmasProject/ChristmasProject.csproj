@@ -51,8 +51,16 @@
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\Roboto-Regular.ttf" />
 	  <None Remove="Resources\Fonts\Whitney-Bold.ttf" />
+	  <None Remove="Resources\Images\cards.png" />
 	  <None Remove="Resources\Images\loading_wheel.png" />
 	  <None Remove="Resources\Images\logo.png" />
+	  <None Remove="Resources\Images\sfondo_no_question.png" />
+	  <None Remove="Resources\Images\sw_black_death.png" />
+	  <None Remove="Resources\Images\sw_darth_fener.png" />
+	  <None Remove="Resources\Images\sw_falcon.png" />
+	  <None Remove="Resources\Images\sw_resistance.png" />
+	  <None Remove="Resources\Images\sw_ship.png" />
+	  <None Remove="Resources\Images\sw_storm_trooper.png" />
 	</ItemGroup>
 
 	<ItemGroup>

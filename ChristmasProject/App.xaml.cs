@@ -38,7 +38,7 @@ public partial class App : Application
 
 
 
-        MainPage = new NavigationPage(new test(new CardViewModel()));
+        MainPage = new NavigationPage(new HomePage());
 	}
 
     private void init()

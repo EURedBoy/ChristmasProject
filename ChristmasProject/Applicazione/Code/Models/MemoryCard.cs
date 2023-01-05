@@ -7,12 +7,11 @@ public partial class MemoryCard : ObservableObject
     private bool isShowed;
 
     private string revealSource;
-    private string hideSource = "hide_card.png";
+    private string hideSource = "cards.png";
 
     public MemoryCard(string source, int id)
     {
         revealSource = source;
-        Source = hideSource;
         Id = id;
 
         isShowed = false;

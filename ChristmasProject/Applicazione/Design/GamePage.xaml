@@ -8,20 +8,40 @@
              xmlns:local="clr-namespace:ChristmasProject.Applicazione.Design"
              x:TypeArguments="ContentPage"
                 
-                BackgroundImageSource="sfondo.png">
+                BackgroundImageSource="sfondo_no_question.png">
 
-    <VerticalStackLayout Margin="0, 100, 0, 0">
+    <VerticalStackLayout Margin="0, 110, 0, 0">
 
-        <VerticalStackLayout VerticalOptions="CenterAndExpand">
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button x:Name="score_label" Text="Score: 0" FontFamily="WhitneyBold" FontSize="30" TextColor="White" BackgroundColor="#FF8A00" CornerRadius="25" Margin="0, 0, 10, 0" HeightRequest="50" WidthRequest="150">
+                <Button.Shadow>
+                    <Shadow
+                    Brush="#D66B00"
+                    Offset="-5, 8"
+                    Radius="1"
+                    Opacity="1" />
+                </Button.Shadow>
+            </Button>
+
+            <Button x:Name="moves_label" Text="Moves: 0" FontFamily="WhitneyBold" FontSize="30" TextColor="White" BackgroundColor="#FF8A00" CornerRadius="25" HeightRequest="50" WidthRequest="150">
+                <Button.Shadow>
+                    <Shadow
+                    Brush="#D66B00"
+                    Offset="-5, 8"
+                    Radius="1"
+                    Opacity="1" />
+                </Button.Shadow>
+            </Button>
+        </HorizontalStackLayout>
+
+        <VerticalStackLayout VerticalOptions="Center" Margin="0, 20, 0, 0">
             <CollectionView ItemsSource="{Binding Cards}">
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Span="3" Orientation="Vertical" VerticalItemSpacing="20"/>
+                    <GridItemsLayout Span="3" Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:MemoryCard">
-                        <Frame BackgroundColor="White" Padding="0" CornerRadius="20" HeightRequest="50" WidthRequest="50">
-                            <Label Text="{Binding Id}" FontSize="28" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                        </Frame>
+                        <models:CardPicture Card="{Binding .}" Source="cards.png" CornerRadius="40" HeightRequest="90" WidthRequest="90" Clicked="OnClick" />
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

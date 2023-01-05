@@ -1,5 +1,3 @@
-using ChristmasProject.Applicazione.Code.ViewModel;
-
 namespace ChristmasProject.Applicazione.Design;
 
 public partial class HomePage : BasePage<ContentPage>
@@ -11,7 +9,7 @@ public partial class HomePage : BasePage<ContentPage>
 
     private async void start_button(object sender, EventArgs e)
     {
-		await Navigation.PushAsync(new GamePage(new CardViewModel()));
+        await NavigationService.GotoGame();
     }
 
     private void shop_button(object sender, EventArgs e)

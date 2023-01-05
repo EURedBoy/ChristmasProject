@@ -11,7 +11,10 @@ public partial class GamePage : BasePage<ContentPage>
 
     private bool isRunning;
 
-	public GamePage(CardViewModel viewModel)
+    private int score;
+    private int moves;
+
+	public GamePage(Themes themes)
 	{
         InitializeComponent();
 
@@ -20,6 +23,9 @@ public partial class GamePage : BasePage<ContentPage>
 
         lastCardImage = null;
         isRunning = false;
+
+        score = 0;
+        moves = 10;
     }
 
     private async void OnClick(object sender, EventArgs e)
@@ -56,6 +62,8 @@ public partial class GamePage : BasePage<ContentPage>
         {
             cardView.Cards.Remove(card);
             cardView.Cards.Remove(lastCard);
+            UpdateScore();
+
         } else
         {
             await card.FlipCard(cardPicture);
@@ -69,4 +77,16 @@ public partial class GamePage : BasePage<ContentPage>
     {
         return one.Source.ToString().Equals(two.Source.ToString());
     }
+
+
+    private void UpdateScore()
+    {
+        score_label.Text = "Score: " + (score + 10);
+    }
+
+    private void UpdateMoves()
+    {
+        moves_label.Text = "Moves: " + --moves;
+    }
+
 }
