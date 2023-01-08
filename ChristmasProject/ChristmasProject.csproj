@@ -70,20 +70,16 @@
 	  <MauiXaml Update="Applicazione\Design\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Applicazione\Design\ShopPage.xaml">
+	  <MauiXaml Update="Applicazione\Design\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Applicazione\Design\test.xaml">
+	  <MauiXaml Update="Applicazione\Design\ShopPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Applicazione\Code\Utils\" />
 	</ItemGroup>
 
 </Project>

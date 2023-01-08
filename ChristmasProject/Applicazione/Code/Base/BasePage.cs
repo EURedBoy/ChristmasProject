@@ -8,12 +8,17 @@ public abstract class BasePage<T> : ContentPage where T : TemplatedPage
     public BasePage()
     {
         NavigationPage.SetHasNavigationBar(this, false);
+
+        ThemeManager = app.ThemeManager;
+        NavigationService= app.NavigationService;
+        SettingsManager = app.SettingsManager;
     }
 
     protected App app { get; } = App.instance;
     protected T page { get; }
 
-    protected static ThemeManager ThemeManager { get; private set; } = new ThemeManager();
-    protected static INavigationService NavigationService { get; private set; } = new NavigationService();
+    protected ThemeManager ThemeManager { get; private set; }
+    protected INavigationService NavigationService { get; private set; }
+    protected SettingsManager SettingsManager { get; private set; }
 }
 

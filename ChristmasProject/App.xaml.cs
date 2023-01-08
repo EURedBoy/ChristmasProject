@@ -1,4 +1,6 @@
-﻿using ChristmasProject.Applicazione.Code.ViewModel;
+﻿using ChristmasProject.Applicazione.Code.Base;
+using ChristmasProject.Applicazione.Code.Manager;
+using ChristmasProject.Applicazione.Code.ViewModel;
 using ChristmasProject.Applicazione.Design;
 
 #if WINDOWS
@@ -36,7 +38,9 @@ public partial class App : Application
         });
 #endif
 
-
+        ThemeManager = new ThemeManager();
+        SettingsManager = new SettingsManager();
+        NavigationService= new NavigationService();
 
         MainPage = new NavigationPage(new HomePage());
 	}
@@ -45,6 +49,10 @@ public partial class App : Application
     {
         instance = this;
     }
+
+    public ThemeManager ThemeManager { get; private set; }
+    public INavigationService NavigationService { get; private set; }
+    public SettingsManager SettingsManager { get; private set; }
 
     public static App instance { get; set; }
 

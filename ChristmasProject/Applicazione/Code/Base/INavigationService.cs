@@ -6,26 +6,41 @@ namespace ChristmasProject.Applicazione.Code.Base
     public interface INavigationService
     {
 
-        public Task NavigateBack();
-        public Task GotoMainPage();
-        public Task GotoGame(Themes theme);
+        public Task NavigateBack(BasePage<ContentPage> page);
+        public Task GotoMainPage(BasePage<ContentPage> page);
+        public Task GotoGame(BasePage<ContentPage> page, Themes theme);
+        public Task GotoShop(BasePage<ContentPage> page);
+        public Task GotoSettings(BasePage<ContentPage> page);
     }
 
     public class NavigationService : INavigationService
     {
-        public Task GotoGame(Themes theme)
+        public Task GotoGame(BasePage<ContentPage> page, Themes theme)
         {
-            return Shell.Current.Navigation.PushAsync(new GamePage(theme));
+            page.Navigation.PopToRootAsync(false); //TODO: Check
+            return page.Navigation.PushAsync(new GamePage(theme));
         }
 
-        public Task GotoMainPage()
+        public Task GotoMainPage(BasePage<ContentPage> page)
         {
-            return Shell.Current.Navigation.PopToRootAsync(false);
+            return page.Navigation.PopToRootAsync(false);
         }
 
-        public Task NavigateBack()
+        public Task GotoSettings(BasePage<ContentPage> page)
         {
-            return Shell.Current.GoToAsync("...", false);
+            page.Navigation.PopToRootAsync(false);
+            return page.Navigation.PushAsync(new SettingsPage());
+        }
+
+        public Task GotoShop(BasePage<ContentPage> page)
+        {
+            page.Navigation.PopToRootAsync(false);
+            return page.Navigation.PushAsync(new SettingsPage());
+        }
+
+        public Task NavigateBack(BasePage<ContentPage> page)
+        {
+            return page.Navigation.PopAsync(false);
         }
     }
 }

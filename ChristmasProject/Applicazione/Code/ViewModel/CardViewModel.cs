@@ -6,19 +6,14 @@ namespace ChristmasProject.Applicazione.Code.ViewModel;
 public partial class CardViewModel
 {
     public ObservableCollection<MemoryCard> Cards { get; set; } = new ObservableCollection<MemoryCard>();
+    private List<ImageSource> cardImage;
 
-    private List<string> cardImage = new List<string>() 
-    { 
-        "sw_black_death.png",
-        "sw_darth_fener.png",
-        "sw_falcon.png",
-        "sw_resistance.png",
-        "sw_ship.png",
-        "sw_storm_trooper.png"
-    };
+    public int InGameCard { get; set; }
 
-    public CardViewModel()
+    public CardViewModel(Themes theme)
     {
+        cardImage = theme.imageSources.ToList();
+        InGameCard = 12;
         BindChatList();
     }
 
@@ -39,7 +34,7 @@ public partial class CardViewModel
         }
     }
 
-    private void insert(MemoryCard[] array, string path, Random random)
+    private void insert(MemoryCard[] array, ImageSource path, Random random)
     {
         for (int i = 0; i < 2; i++)
         {

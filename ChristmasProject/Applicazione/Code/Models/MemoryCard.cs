@@ -5,11 +5,12 @@ namespace ChristmasProject.Applicazione.Code.Models;
 public partial class MemoryCard : ObservableObject
 {
     private bool isShowed;
+    public bool isFounded { get; set; }
 
-    private string revealSource;
-    private string hideSource = "cards.png";
+    private ImageSource revealSource;
+    private ImageSource hideSource = ImageSource.FromFile("cards.png");
 
-    public MemoryCard(string source, int id)
+    public MemoryCard(ImageSource source, int id)
     {
         revealSource = source;
         Id = id;
