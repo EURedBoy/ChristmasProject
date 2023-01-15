@@ -19,7 +19,7 @@ public partial class App : Application
 
 	public App()
 	{
-		InitializeComponent();
+        InitializeComponent();
 
         init();
 
@@ -38,9 +38,10 @@ public partial class App : Application
         });
 #endif
 
-        ThemeManager = new ThemeManager();
         SettingsManager = new SettingsManager();
-        NavigationService= new NavigationService();
+        ThemeManager = new ThemeManager();
+        NavigationService = new NavigationService();
+        EconomyManager = new EconomyManager();
 
         MainPage = new NavigationPage(new HomePage());
 	}
@@ -53,6 +54,7 @@ public partial class App : Application
     public ThemeManager ThemeManager { get; private set; }
     public INavigationService NavigationService { get; private set; }
     public SettingsManager SettingsManager { get; private set; }
+    public EconomyManager EconomyManager { get; set; }
 
     public static App instance { get; set; }
 

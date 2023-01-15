@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             x:Class="ChristmasProject.Applicazione.Design.PopupPage.PopupEndGame"
+             CanBeDismissedByTappingOutsideOfPopup="False"
+             Size="300, 350">
+    <VerticalStackLayout Background="#FEB400" HorizontalOptions="CenterAndExpand">
+        <Image x:Name="title_image" Source="" WidthRequest="200" HeightRequest="50" Margin="0, 20, 0, 0"/>
+        <Button
+            Text="Play Again"
+            TextColor="White"
+            FontFamily="WhitneyBold"
+            FontSize="20"
+            
+            BackgroundColor="#FF8A00"
+            
+            WidthRequest="125"
+            HeightRequest="45"
+
+            Margin="0, 20, 0, 20"
+            
+            CornerRadius="17"
+            
+            x:Name="new_playAgain_button"
+            Clicked="play_again_event">
+
+            
+            
+            <Button.Shadow>
+                <Shadow
+                    Brush="#D66B00"
+                    Offset="-18, 17"
+                    Radius="1"
+                    Opacity="1" />
+            </Button.Shadow>
+        </Button>
+        <Button
+            Text="Main Menu"
+            TextColor="White"
+            FontFamily="WhitneyBold"
+            FontSize="20"
+            
+            BackgroundColor="#FF8A00"
+            
+            WidthRequest="125"
+            HeightRequest="45"
+            
+            CornerRadius="17"
+            
+            x:Name="new_mainMenu_button"
+            Clicked="main_menu_event">
+
+            
+            
+            <Button.Shadow>
+                <Shadow
+                    Brush="#D66B00"
+                    Offset="-18, 17"
+                    Radius="1"
+                    Opacity="1" />
+            </Button.Shadow>
+        </Button>
+
+        <Frame BackgroundColor="#FF8A00" CornerRadius="17" HeightRequest="55" WidthRequest="145" Margin="0, 20, 0, 0" Padding="3,0,0,3" BorderColor="Transparent">
+            <HorizontalStackLayout>
+                <Label x:Name="label_money" Text="0" FontFamily="WhitneyBold" FontSize="20" TextColor="White" Margin="0, 0, 10, 0" VerticalOptions="Center"/>
+                <Image Source="money_image" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" Margin="0, 5, 0, 0"/>
+            </HorizontalStackLayout>
+        </Frame>
+    </VerticalStackLayout>
+</toolkit:Popup>

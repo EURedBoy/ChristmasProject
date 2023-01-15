@@ -1,12 +1,43 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChristmasProject.Applicazione.Design.ShopPage"
-             Title="ShopPage">
-    <VerticalStackLayout
-        BackgroundColor="#FFB400">
-        
-        
-        
+             xmlns:viewModels="clr-namespace:ChristmasProject.Applicazione.Code.Manager"
+             xmlns:models="clr-namespace:ChristmasProject.Applicazione.Code.Models"
+             x:DataType="viewModels:ThemeManager"
+             xmlns:local="clr-namespace:ChristmasProject.Applicazione.Design"
+             x:TypeArguments="ContentPage"
+
+             BackgroundImageSource="shop_background">
+    <VerticalStackLayout Margin="0, 165, 0, 0" HorizontalOptions="Center">
+        <HorizontalStackLayout>
+            <ImageButton Source="back_button" WidthRequest="50" HeightRequest="50" Clicked="BackEvent" Margin="30, 0, 30, 0" />
+            <Frame BackgroundColor="#FF8A00" CornerRadius="25" HeightRequest="55" WidthRequest="175" Padding="0,0,0,3" BorderColor="Transparent">
+                <HorizontalStackLayout>
+                    <Image Source="money_image" WidthRequest="40" HeightRequest="40" VerticalOptions="Center" Margin="10, 5, 10, 5"/>
+                    <Label x:Name="label_money" Text="0" FontFamily="WhitneyBold" FontSize="32" TextColor="White" Margin="0, 0, 10, 0" VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+            </Frame>
+        </HorizontalStackLayout>
+        <CollectionView ItemsSource="{Binding Themes}" Margin="0, 20, 0, 0">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Span="3" Orientation="Vertical" VerticalItemSpacing="10" HorizontalItemSpacing="5"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Themes">
+                    <Border HeightRequest="90" WidthRequest="90" StrokeShape="RoundRectangle 15" BackgroundColor="Transparent">
+
+                        <Frame BackgroundColor="#FF8A00" Padding="3">
+                            <VerticalStackLayout>
+                                <Border WidthRequest="50" HeightRequest="50" StrokeShape="RoundRectangle 50">
+                                    <Image Source="{Binding Icon}" WidthRequest="50" HeightRequest="50" BackgroundColor="#D07D2D"/>
+                                </Border>
+                                <models:ShopButton Theme="{Binding .}" Text="{Binding Prize}" FontFamily="WhitneyBold" FontSize="15" CornerRadius="20" TextColor="White" BackgroundColor="#5f613ca8" VerticalOptions="Center" WidthRequest="75" HeightRequest="25" Margin="0, 5, 0, 0" Padding="0, 0, 0, 3" Clicked="OnBuyEvent"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
-</ContentPage>
+</local:BasePage>

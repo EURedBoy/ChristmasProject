@@ -6,41 +6,41 @@ namespace ChristmasProject.Applicazione.Code.Base
     public interface INavigationService
     {
 
-        public Task NavigateBack(BasePage<ContentPage> page);
-        public Task GotoMainPage(BasePage<ContentPage> page);
-        public Task GotoGame(BasePage<ContentPage> page, Themes theme);
-        public Task GotoShop(BasePage<ContentPage> page);
-        public Task GotoSettings(BasePage<ContentPage> page);
+        public Task NavigateBack();
+        public Task GotoMainPage();
+        public Task GotoGame(Themes theme);
+        public Task GotoShop();
+        public Task GotoSettings();
     }
 
     public class NavigationService : INavigationService
     {
-        public Task GotoGame(BasePage<ContentPage> page, Themes theme)
+        public Task GotoGame(Themes theme)
         {
-            page.Navigation.PopToRootAsync(false); //TODO: Check
-            return page.Navigation.PushAsync(new GamePage(theme));
+            App.Current.MainPage.Navigation.PopToRootAsync(false); //TODO: Check
+            return App.Current.MainPage.Navigation.PushAsync(new GamePage(theme));
         }
 
-        public Task GotoMainPage(BasePage<ContentPage> page)
+        public Task GotoMainPage()
         {
-            return page.Navigation.PopToRootAsync(false);
+            return App.Current.MainPage.Navigation.PopToRootAsync(false);
         }
 
-        public Task GotoSettings(BasePage<ContentPage> page)
+        public Task GotoSettings()
         {
-            page.Navigation.PopToRootAsync(false);
-            return page.Navigation.PushAsync(new SettingsPage());
+            //App.Current.MainPage.Navigation.PopToRootAsync(false);
+            return App.Current.MainPage.Navigation.PushAsync(new SettingsPage());
         }
 
-        public Task GotoShop(BasePage<ContentPage> page)
+        public Task GotoShop()
         {
-            page.Navigation.PopToRootAsync(false);
-            return page.Navigation.PushAsync(new SettingsPage());
+            //page.Navigation.PopToRootAsync(false); //TODO: Check
+            return App.Current.MainPage.Navigation.PushAsync(new ShopPage());
         }
 
-        public Task NavigateBack(BasePage<ContentPage> page)
+        public Task NavigateBack()
         {
-            return page.Navigation.PopAsync(false);
+            return App.Current.MainPage.Navigation.PopAsync(false);
         }
     }
 }

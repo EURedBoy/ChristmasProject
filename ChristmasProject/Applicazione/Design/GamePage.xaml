@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <local:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChristmasProject.Applicazione.Design.GamePage"
@@ -10,10 +10,11 @@
                 
                 BackgroundImageSource="sfondo_no_question.png">
 
-    <VerticalStackLayout Margin="0, 110, 0, 0">
+    <VerticalStackLayout Margin="0, 125, 0, 0">
 
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <Button x:Name="score_label" Text="Score: 0" FontFamily="WhitneyBold" FontSize="30" TextColor="White" BackgroundColor="#FF8A00" CornerRadius="25" Margin="0, 0, 10, 0" HeightRequest="50" WidthRequest="150">
+        <ImageButton Source="back_button" WidthRequest="50" HeightRequest="50" Clicked="BackEvent"/>
+        <HorizontalStackLayout HorizontalOptions="Center" Margin="0, 20, 0, 0">
+            <Button x:Name="score_label" Text="Score: 0" FontFamily="WhitneyBold" FontSize="32" TextColor="White" BackgroundColor="#FF8A00" CornerRadius="25" Margin="0, 0, 10, 0" HeightRequest="55" WidthRequest="175" Padding="0,0,0,3">
                 <Button.Shadow>
                     <Shadow
                     Brush="#D66B00"
@@ -23,7 +24,7 @@
                 </Button.Shadow>
             </Button>
 
-            <Button x:Name="moves_label" Text="Moves: 0" FontFamily="WhitneyBold" FontSize="30" TextColor="White" BackgroundColor="#FF8A00" CornerRadius="25" HeightRequest="50" WidthRequest="150">
+            <Button x:Name="moves_label" Text="Moves: 0" FontFamily="WhitneyBold" FontSize="32" TextColor="White" BackgroundColor="#FF8A00" CornerRadius="25" HeightRequest="55" WidthRequest="175" Padding="0,0,0,3">
                 <Button.Shadow>
                     <Shadow
                     Brush="#D66B00"
@@ -37,11 +38,11 @@
         <VerticalStackLayout VerticalOptions="Center" Margin="0, 20, 0, 0">
             <CollectionView ItemsSource="{Binding Cards}">
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Span="3" Orientation="Vertical"/>
+                    <GridItemsLayout Span="3" Orientation="Vertical" VerticalItemSpacing="10"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:MemoryCard">
-                        <models:CardPicture Card="{Binding .}" Source="cards.png" CornerRadius="40" HeightRequest="90" WidthRequest="90" Clicked="OnClick" />
+                        <models:CardPicture Card="{Binding .}" Source="cards.png" CornerRadius="40" HeightRequest="88" WidthRequest="88" Clicked="OnClick" BackgroundColor="#FF8A00"/>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

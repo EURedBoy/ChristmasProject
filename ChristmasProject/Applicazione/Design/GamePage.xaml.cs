@@ -1,5 +1,8 @@
+using ChristmasProject.Applicazione.Code.Base;
 using ChristmasProject.Applicazione.Code.Models;
 using ChristmasProject.Applicazione.Code.ViewModel;
+using CommunityToolkit.Maui.Views;
+using ChristmasProject.Applicazione.Design.PopupPage;
 
 namespace ChristmasProject.Applicazione.Design;
 
@@ -7,6 +10,8 @@ public partial class GamePage : BasePage<ContentPage>
 {
     private CardPicture lastCardImage;
     private CardViewModel cardView;
+
+    private Themes currentTheme;
 
     private bool isRunning;
     private int score;
@@ -16,10 +21,12 @@ public partial class GamePage : BasePage<ContentPage>
 	{
         InitializeComponent();
 
+        currentTheme = themes;
+
         if (!themes.IsActive)
         {
             DisplayAlert("Attenzione", "Il tema non si e' caricato correttamente", "Ok")
-                .ContinueWith(task => NavigationService.GotoMainPage(this));
+                .ContinueWith(task => NavigationService.GotoMainPage());
             return;
         }
 
@@ -30,7 +37,9 @@ public partial class GamePage : BasePage<ContentPage>
         isRunning = false;
 
         score = 0;
-        moves = 10;
+        moves = 15;
+
+        moves_label.Text = "Moves: " + moves;
     }
 
     private async void OnClick(object sender, EventArgs e)
@@ -53,7 +62,11 @@ public partial class GamePage : BasePage<ContentPage>
 
         await card.FlipCard(cardPicture);
 
-        if (cardPicture == lastCardImage) return;
+        if (cardPicture == lastCardImage)
+        {
+            lastCardImage = null;
+            return;
+        }
 
         if (lastCardImage == null)
         {
@@ -64,34 +77,46 @@ public partial class GamePage : BasePage<ContentPage>
         UpdateMoves();
         MemoryCard lastCard = lastCardImage.Card;
 
-        //TODO: Check this code
-        if (moves <= 0 && cardView.InGameCard <= 0)
-        {
-            await EndGame(true);
-            return;
-        }
-
-        if (moves <= 0)
-        {
-            await EndGame(false);
-            return;
-        }
-
         await Task.Delay(500);
 
         if (isMatching(cardPicture, lastCardImage))
         {
             card.isFounded = true;
-            card.isFounded = true;
+            lastCard.isFounded = true;
 
-            cardView.Cards.Remove(card);
-            cardView.Cards.Remove(lastCard);
+            //TODO: Controllo nei settings
+            //cardView.Cards.Remove(card);
+            //cardView.Cards.Remove(lastCard);
+
+            cardView.InGameCard -= 2;
             UpdateScore();
-
         } else
         {
             await card.FlipCard(cardPicture);
             await lastCard.FlipCard(lastCardImage);
+        }
+
+        //TODO: Check this code non funziona la vittoria probabilmente non giro le carte prima
+        if (cardView.InGameCard <= 0)
+        {
+            var response = await this.ShowPopupAsync(new PopupEndGame(true, score));
+
+            if (response is bool boolResult)
+                if (boolResult) await NavigationService.GotoGame(currentTheme);
+                else await NavigationService.GotoMainPage();
+
+            return;
+        }
+
+        if (moves <= 0)
+        {
+            var response = await this.ShowPopupAsync(new PopupEndGame(false, score));
+
+            if (response is bool boolResult)
+                if (boolResult) await NavigationService.GotoGame(currentTheme);
+                else await NavigationService.GotoMainPage();
+
+            return;
         }
 
         lastCardImage = null;
@@ -101,18 +126,16 @@ public partial class GamePage : BasePage<ContentPage>
     {
         if (winner)
         {
-            SettingsManager.SetData("money", 20.ToString());
-            await DisplayAlert("Hai vinto!", "Bravo, hai vinto", "Ok");
-            await NavigationService.GotoMainPage(this);
+            EconomyManager.AddMoney(20);
+
+            await DisplayAlert("Hai vinto!", "Bravo, hai vinto " + EconomyManager.Money, "Ok");
+            await NavigationService.GotoMainPage();
             return;
         }
-        //TODO: Fai un setmoney getmoney
-        int currentMoney = Int32.Parse(SettingsManager.GetData("money"));
-        SettingsManager.SetData("money", (currentMoney-10).ToString());
+        EconomyManager.RemoveMoney(10);
 
-        await DisplayAlert("Hai perso", "Mi spiace, hai perso", "Ok");
-        await NavigationService.GotoMainPage(this);
-        return;
+        await DisplayAlert("Hai perso", "Mi spiace, hai perso " + EconomyManager.Money, "Ok");
+        await NavigationService.GotoMainPage();
     }
 
     private bool isMatching(CardPicture one, CardPicture two)
@@ -123,7 +146,7 @@ public partial class GamePage : BasePage<ContentPage>
 
     private void UpdateScore()
     {
-        score_label.Text = "Score: " + (score + 10);
+        score_label.Text = "Score: " + (score += 10);
     }
 
     private void UpdateMoves()
@@ -131,4 +154,8 @@ public partial class GamePage : BasePage<ContentPage>
         moves_label.Text = "Moves: " + --moves;
     }
 
+    void BackEvent(System.Object sender, System.EventArgs e)
+    {
+        NavigationService.GotoMainPage();
+    }
 }

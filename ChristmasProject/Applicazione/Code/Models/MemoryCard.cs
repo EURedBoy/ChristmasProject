@@ -23,8 +23,8 @@ public partial class MemoryCard : ObservableObject
 
     public async Task FlipCard(CardPicture cardPicture) //Assolutamente sistemare sto codice
     {
-        await cardPicture.RotateTo(360, 250);
-        cardPicture.Rotation = 0;
+        await cardPicture.RotateYTo(180, 250);
+        cardPicture.RotationY = 0;
 
         cardPicture.Source = isShowed ? hideSource : revealSource;
         isShowed = !isShowed;
