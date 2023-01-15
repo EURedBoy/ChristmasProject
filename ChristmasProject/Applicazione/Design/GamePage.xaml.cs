@@ -154,8 +154,11 @@ public partial class GamePage : BasePage<ContentPage>
         moves_label.Text = "Moves: " + --moves;
     }
 
-    void BackEvent(System.Object sender, System.EventArgs e)
+    async void BackEvent(System.Object sender, System.EventArgs e)
     {
-        NavigationService.GotoMainPage();
+        bool response = await DisplayAlert("Attenzione", "Uscendo perderai tutti i progressi della partita", "Si", "No");
+
+        if (response)
+            await NavigationService.GotoMainPage();
     }
 }
