@@ -1,6 +1,11 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using ChristmasProject.Applicazione.Code.Models;
 using ChristmasProject.Applicazione.Code.Manager;
+using Microsoft.Maui.Storage;
 using Plugin.Maui.Audio;
 
 namespace ChristmasProject.Applicazione.Code.Base
@@ -49,7 +54,7 @@ namespace ChristmasProject.Applicazione.Code.Base
         public void SerializeTheme(List<Themes> themes)
         {
             StringBuilder serialize = new StringBuilder();
-            themes.ForEach(theme => serialize.Append(serialize + ";"));
+            themes.ForEach(theme => serialize.Append(theme.Name + ";"));
 
             SetData("theme_bought", serialize.ToString());
         }

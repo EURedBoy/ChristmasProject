@@ -54,8 +54,8 @@ namespace ChristmasProject.Applicazione.Code.Models
         {
             _prize = "20";
             Name = name;
-            //Task.Run(() => load(directoryName));
-            load(directoryName);
+            Task.Run(() => load(directoryName));
+            //load(directoryName);
         }
 
         private void load(string directory)

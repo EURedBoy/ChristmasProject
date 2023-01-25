@@ -4,12 +4,10 @@
              x:Class="ChristmasProject.Applicazione.Design.GamePage"
              xmlns:viewModels="clr-namespace:ChristmasProject.Applicazione.Code.ViewModel"
              xmlns:models="clr-namespace:ChristmasProject.Applicazione.Code.Models"
-             x:DataType="viewModels:CardViewModel"
              xmlns:local="clr-namespace:ChristmasProject.Applicazione.Design"
              x:TypeArguments="ContentPage"
                 
-                BackgroundImageSource="sfondo_no_question.png">
-
+             BackgroundImageSource="sfondo_no_question.png">
     <VerticalStackLayout Margin="0, 125, 0, 0">
 
         <ImageButton Source="back_button" WidthRequest="50" HeightRequest="50" Clicked="BackEvent"/>

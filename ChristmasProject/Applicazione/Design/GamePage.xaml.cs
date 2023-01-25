@@ -23,7 +23,7 @@ public partial class GamePage : BasePage<ContentPage>
 
         currentTheme = themes;
 
-        if (!themes.IsActive)
+        if (themes != null && !themes.IsActive)
         {
             DisplayAlert("Attenzione", "Il tema non si e' caricato correttamente", "Ok")
                 .ContinueWith(task => NavigationService.GotoMainPage());
@@ -48,6 +48,7 @@ public partial class GamePage : BasePage<ContentPage>
         if (isRunning) return;
 
         CardPicture cardPicture = (CardPicture)sender;
+        if (cardPicture.Card == null) return; //Capire come mai ogni tanto non si carica cards
         if (cardPicture.Card.isFounded) return;
         isRunning = true;
 
@@ -96,10 +97,9 @@ public partial class GamePage : BasePage<ContentPage>
             await lastCard.FlipCard(lastCardImage);
         }
 
-        //TODO: Check this code non funziona la vittoria probabilmente non giro le carte prima
         if (cardView.InGameCard <= 0)
         {
-            var response = await this.ShowPopupAsync(new PopupEndGame(true, score));
+            var response = await this.ShowPopupAsync(new PopupEndGame(true, score, moves));
 
             if (response is bool boolResult)
                 if (boolResult) await NavigationService.GotoGame(currentTheme);
@@ -110,7 +110,7 @@ public partial class GamePage : BasePage<ContentPage>
 
         if (moves <= 0)
         {
-            var response = await this.ShowPopupAsync(new PopupEndGame(false, score));
+            var response = await this.ShowPopupAsync(new PopupEndGame(false, score, moves));
 
             if (response is bool boolResult)
                 if (boolResult) await NavigationService.GotoGame(currentTheme);
@@ -122,25 +122,9 @@ public partial class GamePage : BasePage<ContentPage>
         lastCardImage = null;
     }
 
-    private async Task EndGame(bool winner)
-    {
-        if (winner)
-        {
-            EconomyManager.AddMoney(20);
-
-            await DisplayAlert("Hai vinto!", "Bravo, hai vinto " + EconomyManager.Money, "Ok");
-            await NavigationService.GotoMainPage();
-            return;
-        }
-        EconomyManager.RemoveMoney(10);
-
-        await DisplayAlert("Hai perso", "Mi spiace, hai perso " + EconomyManager.Money, "Ok");
-        await NavigationService.GotoMainPage();
-    }
-
     private bool isMatching(CardPicture one, CardPicture two)
     {
-        return one.Source.ToString().Equals(two.Source.ToString());
+        return one.Source.Equals(two.Source);
     }
 
 

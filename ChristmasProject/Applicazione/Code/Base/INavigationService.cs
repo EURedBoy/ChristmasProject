@@ -1,4 +1,5 @@
-﻿using ChristmasProject.Applicazione.Code.Models;
+﻿using System.Threading.Tasks;
+using ChristmasProject.Applicazione.Code.Models;
 using ChristmasProject.Applicazione.Design;
 
 namespace ChristmasProject.Applicazione.Code.Base
@@ -17,7 +18,7 @@ namespace ChristmasProject.Applicazione.Code.Base
     {
         public Task GotoGame(Themes theme)
         {
-            App.Current.MainPage.Navigation.PopToRootAsync(false); //TODO: Check
+            App.Current.MainPage.Navigation.PopToRootAsync(false); 
             return App.Current.MainPage.Navigation.PushAsync(new GamePage(theme));
         }
 

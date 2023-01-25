@@ -59,7 +59,7 @@ namespace ChristmasProject.Applicazione.Code.Manager
             DefaultTheme = GetThemeFromName("Pokemon");
             init();
 
-            Debug.Print(DefaultTheme.Name);
+            //Debug.Print(DefaultTheme.Name);
         }
 
         private void init()

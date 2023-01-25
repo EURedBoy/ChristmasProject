@@ -1,6 +1,8 @@
-﻿namespace ChristmasProject.Applicazione.Code.Models
+﻿using Microsoft.Maui;
+
+namespace ChristmasProject.Applicazione.Code.Models
 {
-    public class CardPicture : ImageButton
+    public class CardPicture : ImageButton, IElement
     {
         public static readonly BindableProperty CardProperty =
             BindableProperty.Create("Card", typeof(MemoryCard), typeof(CardPicture), null);

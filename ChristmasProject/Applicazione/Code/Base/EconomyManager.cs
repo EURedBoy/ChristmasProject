@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using Microsoft.Maui.Storage;
 
 namespace ChristmasProject.Applicazione.Code.Base
 {
@@ -34,9 +35,9 @@ namespace ChristmasProject.Applicazione.Code.Base
 
         public void RemoveMoney(long value)
         {
-            if (Money <= 0) return;
+            if (Money-value <= 0) Money = 0;
+            else Money -= value;
 
-            Money -= value;
             Preferences.Default.Set("money", Money);
         }
     }

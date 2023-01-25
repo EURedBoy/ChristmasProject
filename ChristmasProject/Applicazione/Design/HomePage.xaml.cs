@@ -7,6 +7,8 @@ public partial class HomePage : BasePage<ContentPage>
 	public HomePage()
 	{
 		InitializeComponent();
+
+        //DisplayAlert("Ciao", FileUtils.TestPath, "Ok");
     }
 
     private async void start_button(object sender, EventArgs e)

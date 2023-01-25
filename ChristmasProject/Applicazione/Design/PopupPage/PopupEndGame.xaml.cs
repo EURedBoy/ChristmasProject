@@ -5,7 +5,7 @@ namespace ChristmasProject.Applicazione.Design.PopupPage;
 public partial class PopupEndGame : Popup
 {
 	private bool win;
-	public PopupEndGame(bool win, int point)
+	public PopupEndGame(bool win, int point, int moves)
 	{
 		InitializeComponent();
 
@@ -19,7 +19,7 @@ public partial class PopupEndGame : Popup
 
 		if (win)
 		{
-			money = (point / 10); //Soldi che guadagna
+			money = (point / 10)+12 - (6-moves); //Soldi che guadagna
 			economy.AddMoney(money);
 		} else
 		{
